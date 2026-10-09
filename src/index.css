@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ==========================================================================
+     60% BASE: Warm Paper Neutrals (Linen, cotton paper, manila kraft)
+     ========================================================================== */
+  --bg-canvas:        #F7F4EE;
+  --bg-surface:       #FFFDF9;
+  --bg-surface-warm:  #F0ECE1;
+  --border-seam:      #E2DCD0;
+  --border-pencil:    #D8D2C5;
+
+  /* ==========================================================================
+     30% TYPOGRAPHY & STRUCTURE: Walnut Gall Ink & Graphite
+     ========================================================================== */
+  --text-ink:         #2C2621;  /* Contrast AAA: 13.6:1 */
+  --text-ink-muted:   #685E53;  /* Contrast AA:  5.77:1 */
+
+  /* ==========================================================================
+     10% RAINBOW BUDGET: Discrete VIBGYOR Gouache & Washes (Strictly ~10%)
+     ========================================================================== */
+  --rb-violet:        #7A5C9E;  /* Doodle Pad */
+  --rb-indigo:        #4B5A9B;  /* Catch the Stars */
+  --rb-blue:          #4F86B5;  /* Breathing Bubble */
+  --rb-green:         #5E9366;  /* Memory Match */
+  --rb-yellow:        #E3B23C;  /* Mood Jar (fills/tape/stamps only) */
+  --rb-orange:        #E58A3F;  /* Date Coupons (fills/tape/stamps only) */
+  --rb-red:           #C9473A;  /* Wax Seal & The Letter */
+
+  /* Soft wash tints (~25% tint for washi tape, stamp stamps, card fills) */
+  --rb-violet-wash:   #E6DFEF;
+  --rb-indigo-wash:   #DCE0EF;
+  --rb-blue-wash:     #DCE9F3;
+  --rb-green-wash:    #DFEBE0;
+  --rb-yellow-wash:   #F8EBC6;
+  --rb-orange-wash:   #F8E0CB;
+  --rb-red-wash:      #F3D8D4;
+
+  /* Elevation and Tactile Paper Shadows */
+  --shadow-paper-flat: 0 1px 3px rgba(44, 38, 33, 0.05), 0 2px 6px rgba(44, 38, 33, 0.03);
+  --shadow-paper-lift: 0 6px 18px -2px rgba(44, 38, 33, 0.08), 0 2px 5px rgba(44, 38, 33, 0.04);
+  --shadow-paper-hover: 0 14px 28px -4px rgba(44, 38, 33, 0.11), 0 4px 8px rgba(44, 38, 33, 0.05);
+  --shadow-wax:        0 4px 12px rgba(201, 71, 58, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+}
+
+/* Base resets & typography rules */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  background-color: var(--bg-canvas);
+  color: var(--text-ink);
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Rule: Caveat display handwriting never below 18px */
+.font-hand {
+  font-family: 'Caveat', cursive, sans-serif;
+  font-size: max(18px, 1.125rem);
+}
+
+/* Paper grain overlay: Fixed, non-animated, pre-rendered tiled PNG layer */
+.paper-grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url('/paper-grain.png');
+  background-repeat: repeat;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+}
+
+/* Accessible focus ring */
+:focus-visible {
+  outline: 2px dashed var(--text-ink);
+  outline-offset: 3px;
+}
+
+/* Touch targets: Ensure min 44px on interactive controls */
+.tap-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Washi tape decoration effect */
+.washi-tape {
+  position: absolute;
+  height: 22px;
+  opacity: 0.88;
+  box-shadow: 0 1px 2px rgba(44, 38, 33, 0.08);
+  clip-path: polygon(
+    0% 3%, 3% 0%, 97% 2%, 100% 5%,
+    99% 95%, 96% 99%, 4% 97%, 0% 93%
+  );
+}
+
+/* Prefers reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
